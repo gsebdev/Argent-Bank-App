@@ -1,13 +1,23 @@
-import { useState } from 'react'
-import { useStore } from 'react-redux'
-import { actions as authActions, authSignIn } from '../features/auth'
+import { useEffect, useState } from 'react'
+import { useSelector, useStore } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { authSignIn } from '../app/store'
 
 export default function SignIn() {
     const [userName, setUserName ] = useState('')
     const [ password, setPassword ] = useState(null)
     const [ rememberMe, setRememberMe ] = useState(false)
 
-   const store = useStore()
+    const userLoggedIn = useSelector((state) => state.auth.loggedIn)
+    const navigate = useNavigate()
+
+    const store = useStore()
+    useEffect(() => {
+        if(userLoggedIn) {
+            navigate('/account')
+        }
+
+    }, [userLoggedIn, navigate])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()

@@ -1,8 +1,22 @@
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
 export default function User() {
+    const user = useSelector((state) => state.user)
+    const userLoggedIn = useSelector((state) => state.auth.loggedIn)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if ( !userLoggedIn) {
+            navigate('/sign-in')
+        }
+    }, [userLoggedIn, navigate])
+
     return (
         <main className="main bg-dark">
             <div className="user-header">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back<br />{user.firstName + ' ' + user.lastName}!</h1>
                 <button className="user-edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
