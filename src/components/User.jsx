@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import EditUser from "./EditUser"
 
 export default function User() {
     const user = useSelector((state) => state.user)
@@ -17,7 +18,7 @@ export default function User() {
         <main className="main bg-dark">
             <div className="user-header">
                 <h1>Welcome back<br />{user.firstName + ' ' + user.lastName}!</h1>
-                <button className="user-edit-button">Edit Name</button>
+                <EditUser />
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
