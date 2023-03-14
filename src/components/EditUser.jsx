@@ -1,20 +1,26 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { modifyUserProfile } from "../app/middlewares"
+
 
 export default function EditUser() {
     const user = useSelector((state) => state.user)
+    const dispatch = useDispatch()
 
     const [ isOpen, setIsOpen ] = useState(false)
     const [ firstName, setFirstName ] = useState('')
     const [ lastName, setLastName ] = useState('')
 
+    const resetDialog = () => {
+        setIsOpen(false)
+        setFirstName('')
+        setLastName('')
+    }
     const handleEditButtonClick = () => {
         setIsOpen(true)
     }
     const handleCancelButtonClick = () => {
-        setIsOpen(false)
-        setFirstName('')
-        setLastName('')
+        resetDialog()
     }
 
     const handleFirstNameChange = (e) => {
@@ -24,7 +30,8 @@ export default function EditUser() {
         setLastName(e.target.value)
     }
     const handleSaveButtonClick = () => {
-        console.log(firstName, lastName)
+        dispatch(modifyUserProfile({firstName, lastName}))
+        resetDialog()
     }
     return (
         <div className='user-edit'>
@@ -33,12 +40,14 @@ export default function EditUser() {
                    <input 
                         type="text"
                         placeholder={user.firstName}
-                        onChange={handleFirstNameChange} 
+                        onChange={handleFirstNameChange}
+                        value={firstName} 
                     />
                     <input 
                         type="text"
                         placeholder={user.lastName}
-                        onChange={handleLastNameChange} 
+                        onChange={handleLastNameChange}
+                        value={lastName}
                     /> 
                 </div>
                 <div className='user-edit-submit-container'>

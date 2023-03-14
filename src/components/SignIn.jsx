@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { authSignIn } from '../app/store'
+import { authLogin } from '../app/middlewares'
+
 
 export default function SignIn() {
     const [userName, setUserName ] = useState('')
@@ -11,7 +12,8 @@ export default function SignIn() {
     const userLoggedIn = useSelector((state) => state.auth.loggedIn)
     const navigate = useNavigate()
 
-    const store = useStore()
+    const dispatch = useDispatch()
+
     useEffect(() => {
         if(userLoggedIn) {
             navigate('/account')
@@ -21,11 +23,11 @@ export default function SignIn() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        authSignIn(store, {
+        dispatch(authLogin({
             email: userName,
             password: password,
             rememberMe: rememberMe
-        })     
+        }))     
         
     }
 

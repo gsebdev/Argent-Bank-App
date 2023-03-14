@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const getInitialLoginState = () => {
-    console.log(localStorage)
     if(sessionStorage.getItem('userToken')){
         return [true, sessionStorage.getItem('userToken')]
     }

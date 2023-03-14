@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react'
-import { useSelector, useStore } from 'react-redux'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchOrUpdateUserProfile, signOut } from '../app/store'
+import { signOut } from '../app/middlewares'
 import logo from '../img/argentBankLogo.png'
 
 export default function Header() {
   const userLoggedIn = useSelector((state) => state.auth.loggedIn)
   const user = useSelector((state) => state.user)
-  const store = useStore()
-
-  useEffect(() => {
-    if (userLoggedIn) {
-      fetchOrUpdateUserProfile(store)
-    }
-  }, [store, userLoggedIn])
+  const dispatch = useDispatch()
 
   const handleSignOutClick = (e) => {
     e.preventDefault()
-    signOut(store)
+    dispatch(signOut)
   }
 
   return (
