@@ -18,11 +18,20 @@
         margin: 0 auto;
         margin-top: 3rem;
         padding: 2rem;
+        .error-message {
+            padding: 20px 0;
+            background-color: rgba(255, 0, 0, 0.2) ;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgb(255, 53, 53);
+            margin-bottom: 10px;
+        }
     }
 
     &-icon {
         font-size: 5rem;
     }
+    
 }
 
 .input {

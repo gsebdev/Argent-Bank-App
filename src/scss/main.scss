@@ -3,8 +3,9 @@
 @import './layout';
 @import './components/header';
 @import './components/footer';
-@import './components/home';
-@import './components/sign-in';
-@import './components/user';
+@import './pages/home';
+@import './pages/login';
+@import './pages/user';
 @import './components/user-edit';
-@import './components/error';
+@import './pages/error';
+@import './components/loader';
