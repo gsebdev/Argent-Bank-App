@@ -37,7 +37,6 @@ function App() {
   useEffect(() => {
     if(loggedIn) {
       dispatch(getUserProfile())
-      console.log('userprofile')
     }
   }, [loggedIn, dispatch])
   

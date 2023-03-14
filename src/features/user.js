@@ -49,7 +49,7 @@ export const { reducer, actions } = createSlice({
             }
             return state
         },
-        signout: (state) => {
+        reset: (state) => {
             state = {
                 status: 'void',
                 error: null,

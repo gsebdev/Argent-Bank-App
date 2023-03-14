@@ -53,7 +53,7 @@ export function signOut(dispatch) {
     localStorage.clear()
     sessionStorage.clear()
     dispatch(authActions.signout())
-    dispatch(userActions.signout())
+    dispatch(userActions.reset())
 }
 
 export function modifyUserProfile(user) {
