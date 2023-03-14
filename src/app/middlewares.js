@@ -61,12 +61,23 @@ export function modifyUserProfile(user) {
         const state = getState()
         const token = state.auth.jwt
         const userStore = state.user
+
+        // if values are not defined or empty string, keeps the state value
+        const firstName = user.firstName ? user.firstName : userStore.firstName
+        const lastName = user.lastName ? user.lastName : userStore.lastName
+        
+        if(firstName === userStore.firstName && lastName === userStore.lastName) {
+            return
+        }
+
         if (userStore.status === 'updating' || userStore.status === 'fetching') {
             return
         }
+       
         dispatch(userActions.updating())
+
         try {
-            const data = await api.modifyProfile(token, { firstName: user.firstName, lastName: user.lastName })
+            const data = await api.modifyProfile(token, { firstName: firstName, lastName: lastName })
             dispatch(userActions.resolved(data))
         } catch ({ status, message }) {
             if (status === 401) {
@@ -74,8 +85,6 @@ export function modifyUserProfile(user) {
             } else {
                 dispatch(userActions.rejected({ status, message }))
             }
-
-        }
+        }   
     }
-
 }
