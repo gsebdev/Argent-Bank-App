@@ -10,12 +10,12 @@ async function apiFetch({ endpoint, method, token = null, body = null }) {
         },
         body: body ? JSON.stringify(body) : null
 
-    })
-    const data = await response.json()
+    })   
     if(response.ok) {
+        const data = await response.json()
         return data
     } else {
-        throw data
+        throw (response)
     }
 }
 

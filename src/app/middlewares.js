@@ -52,7 +52,7 @@ export function getUserProfile() {
 export function signOut(dispatch) {
     localStorage.clear()
     sessionStorage.clear()
-    dispatch(authActions.signout())
+    dispatch(authActions.reset())
     dispatch(userActions.reset())
 }
 

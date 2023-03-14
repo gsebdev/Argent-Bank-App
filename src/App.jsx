@@ -2,11 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { getUserProfile } from './app/middlewares'
-import Home from './components/Home'
+import Home from './pages/Home'
 import Layout from './components/Layout'
-import SignIn from './components/SignIn'
-import User from './components/User'
+import User from './pages/User'
 import './scss/main.scss'
+import LogIn from './pages/LogIn'
+import ErrorDisplay from './pages/ErrorDisplay'
 
 const router = createBrowserRouter([
   {
@@ -16,16 +17,20 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
-
       },
       {
-        path: 'sign-in',
-        element: <SignIn />
+        path: 'login',
+        element: <LogIn />,
       },
       {
-        path: 'account',
-        element: <User />
+        path: 'profile',
+        element: <User />,
+      },
+      {
+        path: '*',
+        element: <ErrorDisplay code='404' message={'La page n\'existe pas'} />
       }
+
     ]
   }
 ])

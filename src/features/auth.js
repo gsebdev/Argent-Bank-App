@@ -36,10 +36,11 @@ export const { reducer, actions } = createSlice({
                 message: payload.message
             }
         },
-        signout: (state) => {
+        reset: (state) => {
             state.jwt = null
             state.status = 'void'
             state.loggedIn = false
+            state.error = null
         }
     }
 })
