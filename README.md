@@ -1,6 +1,24 @@
 # Argent Bank Frontend App
+This is a bank app that allows a userto login, logout and change his name (phase 1)
+In the phase 2 the user should be able to see and modify banking transactions
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses [React Redux](https://react-redux.js.org) and [Redux Toolkit](https://redux-toolkit.js.org)
+
+## Prerequisites
+
+* Install and run the [Backend ArgentBank App](https://github.com/gsebdev/Project-10-Bank-API)
+* Clone this repo
+* Open the terminal in the cloned folder and run :
+```sh
+# install dependencies
+npm install
+
+# Run the app in dev mode
+npm start
+```
+* You should be able to access the app at [http://localhost:3000](http://localhost:3000)
+
 
 ## Available Scripts
 
