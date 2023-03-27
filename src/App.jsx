@@ -37,13 +37,13 @@ const router = createBrowserRouter([
 
 function App() {
   const dispatch = useDispatch()
-  const loggedIn = useSelector((state) => state.auth.loggedIn)
-
+  const userToken = useSelector((state) => state.auth.userToken)
+  
   useEffect(() => {
-    if(loggedIn) {
+    if(userToken) {
       dispatch(getUserProfile())
     }
-  }, [loggedIn, dispatch])
+  }, [userToken, dispatch])
   
 
   return (

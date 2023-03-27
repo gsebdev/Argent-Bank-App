@@ -7,14 +7,14 @@ import ErrorDisplay from "./ErrorDisplay"
 
 export default function User() {
     const user = useSelector((state) => state.user)
-    const userLoggedIn = useSelector((state) => state.auth.loggedIn)
+    const userToken = useSelector(state => state.auth.userToken)
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!userLoggedIn) {
+        if (!userToken) {
             navigate('/login')
         }
-    }, [userLoggedIn, navigate])
+    }, [userToken, navigate])
 
     return (
         <React.Fragment>

@@ -29,7 +29,7 @@ export function authLogin({ email, password, rememberMe }) {
 export function getUserProfile() {
     return async (dispatch, getState) => {
         const userStore = getState().user
-        const token = getState().auth.jwt
+        const token = getState().auth.userToken
         if (userStore.status === 'fetching' || userStore.status === 'updating') {
             return
         }
@@ -59,7 +59,7 @@ export function signOut(dispatch) {
 export function modifyUserProfile(user) {
     return async (dispatch, getState) => {
         const state = getState()
-        const token = state.auth.jwt
+        const token = state.auth.userToken
         const userStore = state.user
 
         // if values are not defined or empty string, keeps the state value

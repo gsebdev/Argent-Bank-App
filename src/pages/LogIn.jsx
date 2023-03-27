@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { authLogin } from '../app/middlewares'
 import Loader from '../components/Loader'
-import ErrorDisplay from './ErrorDisplay'
 
 
 export default function LogIn() {
@@ -17,11 +16,11 @@ export default function LogIn() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (auth.loggedIn) {
+        if (auth.userToken) {
             navigate('/profile')
         }
 
-    }, [auth.loggedIn, navigate])
+    }, [auth.userToken, navigate])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()

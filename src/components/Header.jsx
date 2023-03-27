@@ -5,7 +5,6 @@ import { signOut } from '../app/middlewares'
 import logo from '../img/argentBankLogo.png'
 
 export default function Header() {
-  const userLoggedIn = useSelector((state) => state.auth.loggedIn)
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -34,7 +33,7 @@ export default function Header() {
       </Link>
       <div>
         {
-          !userLoggedIn ?
+          user.status !== 'resolved' ?
             <a className='main-nav-item' href='/' onClick={handleSignInClick}>
                 <i className='fa fa-user-circle' />
                 Sign In

@@ -2,23 +2,22 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const getInitialLoginState = () => {
     if(sessionStorage.getItem('userToken')){
-        return [true, sessionStorage.getItem('userToken')]
+        return sessionStorage.getItem('userToken')
     }
     if(localStorage.getItem('userToken')){
-        return [true, localStorage.getItem('userToken')]
+        return localStorage.getItem('userToken')
     }
-    return [false, null]
+    return null
 }
-const [ loggedIn, token ] = getInitialLoginState()
+const userToken = getInitialLoginState()
 
 // slice
 export const { reducer, actions } = createSlice({
     name: 'auth',
     initialState: {
-        loggedIn: loggedIn,
         status: 'void',
         error: null,
-        jwt: token
+        userToken: userToken
     },
     reducers: {
         fetching: (state) => {
@@ -26,8 +25,7 @@ export const { reducer, actions } = createSlice({
         },
         resolved: (state, { payload }) => {
             state.status = 'resolved'
-            state.jwt = payload.token
-            state.loggedIn = true
+            state.userToken = payload.token
         },
         rejected: (state, { payload }) => {
             state.status = 'rejected'
@@ -37,9 +35,8 @@ export const { reducer, actions } = createSlice({
             }
         },
         reset: (state) => {
-            state.jwt = null
+            state.userToken = null
             state.status = 'void'
-            state.loggedIn = false
             state.error = null
         }
     }
