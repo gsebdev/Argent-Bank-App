@@ -11,6 +11,7 @@ export default function User() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        // if no user token is found in the store, then go to the login page
         if (!userToken) {
             navigate('/login')
         }

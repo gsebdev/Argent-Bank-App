@@ -2,6 +2,7 @@ import { actions as authActions } from '../features/auth'
 import { actions as userActions } from '../features/user'
 import { api } from './api'
 
+// login thunk middleware
 export function authLogin({ email, password, rememberMe }) {
     return async (dispatch, getState) => {
         if (getState().auth.status === 'fetching') {
@@ -25,7 +26,7 @@ export function authLogin({ email, password, rememberMe }) {
         }
     }
 }
-
+// get user profile thunk middleware
 export function getUserProfile() {
     return async (dispatch, getState) => {
         const userStore = getState().user
@@ -48,14 +49,14 @@ export function getUserProfile() {
     }
 
 }
-
+// signout thunk middleware
 export function signOut(dispatch) {
     localStorage.clear()
     sessionStorage.clear()
     dispatch(authActions.reset())
     dispatch(userActions.reset())
 }
-
+// modify user lastname and firstname thunk middleware
 export function modifyUserProfile(user) {
     return async (dispatch, getState) => {
         const state = getState()
@@ -66,6 +67,7 @@ export function modifyUserProfile(user) {
         const firstName = user.firstName ? user.firstName : userStore.firstName
         const lastName = user.lastName ? user.lastName : userStore.lastName
         
+        // if no changes on both firstname and lastname then do nothing
         if(firstName === userStore.firstName && lastName === userStore.lastName) {
             return
         }

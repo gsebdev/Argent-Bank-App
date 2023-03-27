@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+// function that checks if a user token is found in either local and session storage
 const getInitialLoginState = () => {
     if(sessionStorage.getItem('userToken')){
         return sessionStorage.getItem('userToken')
@@ -9,9 +10,10 @@ const getInitialLoginState = () => {
     }
     return null
 }
+// get the initial state of user token
 const userToken = getInitialLoginState()
 
-// slice
+// auth slice
 export const { reducer, actions } = createSlice({
     name: 'auth',
     initialState: {

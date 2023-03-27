@@ -41,6 +41,7 @@ function App() {
   
   useEffect(() => {
     if(userToken) {
+      // if a user token is already present in the redux store, then get the user profile details.
       dispatch(getUserProfile())
     }
   }, [userToken, dispatch])
